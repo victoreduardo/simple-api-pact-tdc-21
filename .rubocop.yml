@@ -90,6 +90,9 @@ RSpec/LetSetup:
 RSpec/NamedSubject:
   Enabled: false
 
+RSpec/EmptyExampleGroup:
+  Enabled: false
+
 # Lint
 
 Lint/MissingSuper:
