@@ -3,12 +3,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.1'
 
-gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
-gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 4.1'
-gem 'redis', '~> 4.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'dotenv-rails', '~> 2.7', require: 'dotenv/rails-now'
+gem 'pg', '>= 0.18', '< 2.0'
+gem 'puma', '~> 4.1'
+gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
+gem 'redis', '~> 4.0'
 gem 'validates_timeliness', '~> 5.0.0.alpha3'
 
 group :development, :test do
@@ -18,10 +18,10 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-instafail', require: false
   gem 'rspec-rails'
-  gem 'rubocop', '~> 0.88'
-  gem 'rubocop-performance', '~> 1.7'
-  gem 'rubocop-rails', '~> 2.6'
-  gem 'rubocop-rspec', '~> 1.42'
+  gem 'rubocop', '~> 1.15.0'
+  gem 'rubocop-performance'
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', '~> 2.4.0'
 end
 
 group :development do

@@ -13,16 +13,18 @@ module MetricApi
     config.api_only = true
 
     config.redis_url = ENV.fetch('REDIS_URL')
-    config.cache_store = :redis_cache_store, {
+    config.cache_store =
+      :redis_cache_store,
+      {
         url: config.redis_url,
-        namespace: 'metrics-api',
-        expires_in: 1 * 60 * 60, # 1 hour TTL
-        race_condition_ttl: 5,
+              namespace: 'metrics-api',
+              expires_in: 1 * 60 * 60, # 1 hour TTL
+              race_condition_ttl: 5,
 
-        connect_timeout:    30,  # Defaults to 20 seconds
-        read_timeout:       0.2, # Defaults to 1 second
-        write_timeout:      0.2, # Defaults to 1 second
-        reconnect_attempts: 1   # Defaults to 0
+              connect_timeout:    30,  # Defaults to 20 seconds
+              read_timeout:       0.2, # Defaults to 1 second
+              write_timeout:      0.2, # Defaults to 1 second
+              reconnect_attempts: 1   # Defaults to 0
       }
 
     config.active_record.schema_format = :sql
