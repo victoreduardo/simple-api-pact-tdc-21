@@ -1,48 +1,10 @@
 version: '3.5'
 
 services:
-  db:
-    image: postgres:11.7-alpine
-    ports:
-      - "127.0.0.1:5432:5432"
-    volumes:
-      - db_data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_PASSWORD=123
-
   api:
-    build: ./
-    command: /bin/bash Dockerfiles/docker-entrypoint.sh
-    volumes:
-      - ./:/app
-      - dependencies_cache:/app_dependencies/bundle
-    ports:
-      - "3003:3003"
-    depends_on:
-      - db
-      - redis
+    build:
+      target: builder
+    command: /bin/bash Dockerfiles/test-entrypoint.sh
     environment:
-      - DATABASE_URL=postgresql://postgres:123@db:5432/manager_development
-      - TEST_DATABASE_URL=postgresql://postgres:123@db:5432/manager_test
       - RAILS_ENV=test
-      - RAILS_LOG_TO_STDOUT=true
-      - RAILS_SECRET_KEY=b3902a3c892b23a1f6ef0e3a7e145024ea9166844bfce78c21f192d
-      - REDIS_URL=redis://redis:6379/0
-      - PROD_DATABASE_URL=
-      - DEVISE_JWT_SECRET_KEY=5a25f3bb608c986f205b0ab777c0ebba49c54dccea25b69729a4c50913f4b1d07c0f33d6ea96065c477f38776cf1f6c26a26178a126c3e506b288c13e17d66d1
-    networks:
-     - default
-     - manager_net
-
-  redis:
-    image: redis:5.0.3
-    ports:
-      - "127.0.0.1:6379:6379"
-
-volumes:
-  db_data:
-  dependencies_cache:
-
-networks:
-  manager_net:
-    name: manager
+      - PATTERN=/app/spec/swagger/**/*_spec.rb
