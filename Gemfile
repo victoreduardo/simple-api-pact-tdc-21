@@ -11,6 +11,9 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
 gem 'redis', '~> 4.0'
 gem 'validates_timeliness', '~> 5.0.0.alpha3'
 
+gem 'rswag-api', '~> 2.3'
+gem 'rswag-ui', '~> 2.3'
+
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 6.1'
@@ -19,10 +22,12 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-instafail', require: false
   gem 'rspec-rails'
+  gem 'rswag-specs'
   gem 'rubocop', '~> 1.15.0'
   gem 'rubocop-performance'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', '~> 2.4.0'
+  gem 'shoulda', '~> 4.0'
 end
 
 group :development do
@@ -35,7 +40,6 @@ end
 
 group :test do
   gem 'database_cleaner-active_record', '~> 1.8'
-  gem 'shoulda', '~> 4.0'
   gem 'simplecov', '~> 0.17.0'
 end
 

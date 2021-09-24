@@ -1,0 +1,91 @@
+---
+openapi: 3.0.1
+info:
+  title: API 1.0.0
+  version: v1
+paths:
+  "/metrics":
+    get:
+      summary: Retrieves list of metrics
+      tags:
+      - Metrics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                    nullable: false
+                  value:
+                    type: decimal
+                    nullable: false
+                  date:
+                    type: datetime
+                    nullable: false
+                  created_at:
+                    type: datetime
+                    nullable: false
+                  updated_at:
+                    type: datetime
+                    nullable: false
+    post:
+      summary: Creates a metric
+      tags:
+      - Metrics
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                    nullable: false
+                  value:
+                    type: number
+                    nullable: false
+                  date:
+                    type: date-time
+                    nullable: false
+                  created_at:
+                    type: datetime
+                    nullable: false
+                  updated_at:
+                    type: date
+                    nullable: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                value:
+                  type: number
+                date:
+                  type: date-time
+              required:
+              - name
+              - value
+              - date
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3003
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: metrics.com

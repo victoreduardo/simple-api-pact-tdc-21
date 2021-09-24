@@ -11,7 +11,7 @@ class MetricsController < ApplicationController
     if metric.save
       render json: { data: metric }, status: :created
     else
-      render json: { errors: metric.errors }, status: :unprocessable_entity
+      render json: { error: metric.errors }, status: :unprocessable_entity
     end
   end
 
