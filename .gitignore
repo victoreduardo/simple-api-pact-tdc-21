@@ -62,3 +62,4 @@ build-iPhoneSimulator/
 /test/
 /out/test/metric_api/
 metric_api.iml
+/rubocop.html
