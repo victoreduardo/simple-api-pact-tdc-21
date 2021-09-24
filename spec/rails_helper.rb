@@ -32,13 +32,15 @@ RSpec.configure do |config|
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
 
+  DatabaseCleaner.allow_production = false
+  DatabaseCleaner.allow_remote_database_url = true
   DatabaseCleaner.clean_with(:truncation)
   DatabaseCleaner.strategy = :transaction
 
   config.include FactoryBot::Syntax::Methods
   FactoryBot.use_parent_strategy = false
 
-  config.after(:each) do
+  config.after do
     FactoryBot.rewind_sequences
   end
 end

@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Metric, type: :model do
-  context 'validates' do
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:value) }
-    it { should validate_presence_of(:date) }
-    it { should validate_length_of(:name).is_at_most(255) }
-    it { should validate_numericality_of(:value) }
+  describe 'validates' do
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:value) }
+    it { is_expected.to validate_presence_of(:date) }
+    it { is_expected.to validate_length_of(:name).is_at_most(255) }
+    it { is_expected.to validate_numericality_of(:value) }
 
-    it 'date' do
+    it 'should date is valid' do
       subject.name = 'Foo Baa'
       subject.value = 12.22
       subject.date = 'test'

@@ -6,7 +6,7 @@ shared_examples_for :create_endpoint do
   it 'should create the record and respond with a 201' do
     expect do
       post create_url, params: params
-    end.to(change { described_class.count }.by(1))
+    end.to(change(described_class, :count).by(1))
 
     expect(response).to have_http_status(:created)
   end

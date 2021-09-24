@@ -70,6 +70,26 @@ Metrics:
 Naming/MethodParameterName:
   Enabled: false
 
+# Rspec
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/SharedExamples:
+  Enabled: false
+
+RSpec/ExampleWording:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
 # Lint
 
 Lint/MissingSuper:
@@ -120,3 +140,4 @@ AllCops:
     - '.irbrc'
     - 'balance_dependencies/**/*'
     - 'tmp/**/*'
+    - 'out/test/**/*'
