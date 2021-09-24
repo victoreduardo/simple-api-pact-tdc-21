@@ -57,3 +57,8 @@ build-iPhoneSimulator/
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/.idea/
+/log/
+/test/
+/out/test/metric_api/
+metric_api.iml
