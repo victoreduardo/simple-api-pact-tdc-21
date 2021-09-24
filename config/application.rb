@@ -26,7 +26,5 @@ module MetricApi
               write_timeout:      0.2, # Defaults to 1 second
               reconnect_attempts: 1   # Defaults to 0
       }
-
-    config.active_record.schema_format = :sql
   end
 end
