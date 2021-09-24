@@ -15,6 +15,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 6.1'
   gem 'faker'
+  gem 'parallel_tests'
   gem 'rspec'
   gem 'rspec-instafail', require: false
   gem 'rspec-rails'
