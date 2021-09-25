@@ -1,3 +1,13 @@
+require 'simplecov'
+
+if ENV.fetch('COVERAGE', false)
+  SimpleCov.start 'rails' do
+    add_filter '/vendor/'
+    add_filter '/lib/'
+    minimum_coverage 100.0
+  end
+end
+
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
