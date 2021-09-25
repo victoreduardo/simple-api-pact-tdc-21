@@ -65,9 +65,9 @@ Shoulda::Matchers.configure do |config|
 end
 
 RSpec::Matchers.define :have_records do |expected_records|
-  records_ids = expected_records.map(&:id).sort
+  records_ids = expected_records.map(&:id)
   def response_ids(response)
-    response['data']&.map { |d| d['id'].to_i }&.sort || []
+    response['data']&.map { |d| d['id'].to_i } || []
   end
 
   match do |actual_response|
