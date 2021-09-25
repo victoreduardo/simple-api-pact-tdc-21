@@ -7,6 +7,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'dotenv-rails', '~> 2.7', require: 'dotenv/rails-now'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
+gem 'rack-cors'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
 gem 'redis', '~> 4.0'
 gem 'validates_timeliness', '~> 5.0.0.alpha3'
