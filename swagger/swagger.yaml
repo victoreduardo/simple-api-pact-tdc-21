@@ -23,7 +23,7 @@ paths:
                     type: string
                     nullable: false
                   value:
-                    type: decimal
+                    type: number
                     nullable: false
                   date:
                     type: datetime
@@ -40,7 +40,7 @@ paths:
       - Metrics
       parameters: []
       responses:
-        '200':
+        '201':
           description: OK
           content:
             application/json:
@@ -59,11 +59,13 @@ paths:
                     type: date-time
                     nullable: false
                   created_at:
-                    type: datetime
+                    type: date-time
                     nullable: false
                   updated_at:
-                    type: date
+                    type: date-time
                     nullable: false
+        '422':
+          description: invalid request
       requestBody:
         content:
           application/json:

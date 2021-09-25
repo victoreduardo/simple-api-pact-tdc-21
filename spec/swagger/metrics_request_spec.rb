@@ -1,6 +1,6 @@
 require 'swagger_helper'
 
-RSpec.describe Metric, type: :request do
+RSpec.describe 'Metrics API', type: :request do
   path '/metrics' do
     get 'Retrieves list of metrics' do
       tags 'Metrics'
@@ -39,8 +39,9 @@ RSpec.describe Metric, type: :request do
           required: %w[name value date]
         }
 
-      response '200', 'OK' do
-        let!(:initial_count) { described_class.count }
+      response 201, 'OK' do
+        let(:metric) { { name: 'foo', value: 12.11, date: '11-11-2021 11:11' } }
+        let!(:initial_count) { Metric.count }
 
         schema type: :object,
           properties: {
@@ -53,8 +54,13 @@ RSpec.describe Metric, type: :request do
           }
 
         run_test! do
-          expect(described_class.count).to eq(initial_count + 1)
+          expect(Metric.count).to eq(initial_count + 1)
         end
+      end
+
+      response 422, 'invalid request' do
+        let(:metric) { { name: 'foo' } }
+        run_test!
       end
     end
   end
