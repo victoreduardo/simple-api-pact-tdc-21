@@ -25,6 +25,15 @@ RSpec.configure do |config|
 
   config.use_transactional_fixtures = true
 
+  # Disable transactions as needed
+  config.around(:each, use_transactional_tests: false) do |example|
+    self.use_transactional_tests = false
+    example.run
+    self.use_transactional_tests = true
+
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 
@@ -37,6 +46,8 @@ RSpec.configure do |config|
   DatabaseCleaner.allow_remote_database_url = true
   DatabaseCleaner.clean_with(:truncation)
   DatabaseCleaner.strategy = :transaction
+  DatabaseCleaner[:redis].db = Redis.new(url: Rails.application.config.redis_url)
+  DatabaseCleaner[:redis].strategy = :deletion
 
   config.include FactoryBot::Syntax::Methods
   FactoryBot.use_parent_strategy = false
