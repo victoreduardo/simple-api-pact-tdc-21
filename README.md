@@ -1,5 +1,11 @@
 # Metric Api
 
+### Link API
+* `http://localhost:3003`
+
+### Link API docs
+* `http://localhost:3003/docs`
+
 ### Makefile commands
 * `make up`
 * `make down`
