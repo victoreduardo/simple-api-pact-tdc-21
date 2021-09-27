@@ -7,4 +7,3 @@ services:
     command: /bin/bash Dockerfiles/test-entrypoint.sh
     environment:
       - RAILS_ENV=test
-      - PATTERN=/app/spec/swagger/**/*_spec.rb

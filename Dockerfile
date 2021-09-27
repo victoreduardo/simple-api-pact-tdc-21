@@ -1,4 +1,4 @@
-FROM ruby:2.7.1
+FROM ruby:2.7.4
 
 RUN echo "alias be='bundle exec'" >> /root/.bashrc
 

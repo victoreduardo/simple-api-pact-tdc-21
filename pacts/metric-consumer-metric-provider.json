@@ -1,0 +1,183 @@
+{
+  "consumer": {
+    "name": "metric-consumer"
+  },
+  "provider": {
+    "name": "metric-provider"
+  },
+  "interactions": [
+    {
+      "description": "a POST request to create a metric",
+      "providerStates": [
+        {
+          "name": "provider allows metric creation",
+          "params": {
+            "name": "Foo Baa",
+            "value": 12.33,
+            "date": "2021-01-02T11:12:00.000Z"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "path": "/metrics",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "metric": {
+            "name": "Foo Baa",
+            "value": 12.33,
+            "date": "2021-01-02 11:12"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "data": {
+            "id": 1,
+            "name": "Foo Baa",
+            "value": "12.33",
+            "date": "2021-01-02T11:12:00.000Z",
+            "created_at": "2021-12-02T13:11:56.291Z",
+            "updated_at": "2021-12-02T13:11:56.291Z"
+          }
+        },
+        "matchingRules": {
+          "body": {
+            "$.data.id": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.created_at": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.updated_at": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "a GET request to return all metric",
+      "providerStates": [
+        {
+          "name":  "provider allows metric creation",
+          "params": {
+            "name": "Score",
+            "value": 12.25,
+            "date": "2021-09-22T18:04:54.868Z"
+          }
+        },
+        {
+          "name":  "provider allows metric creation",
+          "params": {
+            "name": "Score 2",
+            "value": 76.31,
+            "date": "2021-09-22T22:40:23.439Z"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/metrics",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "data": [
+            {
+              "id": 1,
+              "name": "Score",
+              "value": "12.25",
+              "date": "2021-09-22T18:04:54.868Z",
+              "created_at": "2021-09-25T13:44:12.755Z",
+              "updated_at": "2021-09-25T13:44:12.755Z"
+            },
+            {
+              "id": 2,
+              "name": "Score 2",
+              "value": "76.31",
+              "date": "2021-09-22T22:40:23.439Z",
+              "created_at": "2021-09-25T13:44:12.767Z",
+              "updated_at": "2021-09-25T13:44:12.767Z"
+            }
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.data[0].id": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data[1].id": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data[0].created_at": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data[1].created_at": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data[0].updated_at": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data[1].updated_at": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  }
+}

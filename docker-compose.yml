@@ -21,6 +21,7 @@ services:
     depends_on:
       - db
       - redis
+      - broker_app
     environment:
       - DATABASE_URL=postgresql://postgres:123@db:5432/manager_development
       - TEST_DATABASE_URL=postgresql://postgres:123@db:5432/manager_test
@@ -29,7 +30,7 @@ services:
       - RAILS_SECRET_KEY=b3902a3c892b23a1f6ef0e3a7e145024ea9166844bfce78c21f192d
       - REDIS_URL=redis://redis:6379/0
       - PROD_DATABASE_URL=
-      - DEVISE_JWT_SECRET_KEY=5a25f3bb608c986f205b0ab777c0ebba49c54dccea25b69729a4c50913f4b1d07c0f33d6ea96065c477f38776cf1f6c26a26178a126c3e506b288c13e17d66d1
+      - METRIC_UI_PACT_URI=http://broker_app:80/pacts/provider/metric-provider/consumer/metric-consumer/latest
     networks:
      - default
      - manager_net
@@ -38,6 +39,21 @@ services:
     image: redis:5.0.3
     ports:
       - "127.0.0.1:6379:6379"
+
+  broker_app:
+    image: dius/pact-broker
+    links:
+      - db
+    ports:
+      - "80:80"
+    environment:
+      PACT_BROKER_DATABASE_USERNAME: postgres
+      PACT_BROKER_DATABASE_PASSWORD: 123
+      PACT_BROKER_DATABASE_HOST: db
+      PACT_BROKER_DATABASE_NAME: postgres
+    networks:
+      - default
+      - manager_net
 
 volumes:
   db_data:

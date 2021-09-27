@@ -23,5 +23,5 @@ test:
 test_all:
 	$(DC_BASE_CMD) --file docker-compose.test.yml run --rm api
 
-rswagger:
-	$(DC_BASE_CMD) exec -e RAILS_ENV=test api bundle exec rake rswag:specs:swaggerize PATTERN="spec/swagger/**/*_spec.rb"
+pact_verify:
+	$(DC_BASE_CMD) exec -e RAILS_ENV=test api bundle exec rake pact:verify
